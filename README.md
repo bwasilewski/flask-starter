@@ -1,2 +1,2 @@
 # flask-starter
-Flask CRUD app
+A simple repo for learning how to build web apps with python
