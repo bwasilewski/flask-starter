@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Python Websites with Flask</title>
+    </head>
+    <body>
+
+        <div class="container">
+            <h1>Add User</h1>
+
+            {% for user in users %}
+            <h1>{{ user.name }}</h1>
+            {% endfor %}
+
+            <form method="post">
+                <input type="text" name="name" id="field-name" />
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+    </body>
+</html>

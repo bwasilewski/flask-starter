@@ -1,0 +1,14 @@
+{% extends "base.html" -%}
+{% block content -%}
+    <h1>Register</h1>
+    <form method="post" action="/newuser">
+        <ul style="list-style-type: none;">
+            <li><input type="text" id="field-email" name="field-email" placeholder="email" /></li>
+            <li><input type="text" id="field-fname" name="field-fname" placeholder="first name" /></li>
+            <li><input type="text" id="field-lname" name="field-lname" placeholder="last name" /></li>
+            <li><input type="text" id="field-age" name="field-age" placeholder="age" /></li>
+            <li><input type="text" id="field-password" name="field-password" placeholder="password" /></li>
+            <li><input type="submit" /></li>
+        </ul>
+    </form>
+{% endblock content %}
