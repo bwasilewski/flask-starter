@@ -47,6 +47,25 @@ def newuser():
 
     return index()
 
+@app.route('/edituser/<userid>')
+def edituser(userid=None):
+    user = mongo.db.users.find_one({'_id': ObjectId(userid)})
+    return render_template('edituser.html', title="Please modify the user", user=user)
+
+@app.route('/useredited', methods=['POST'])
+def useredited():
+    mongo.db.users.update_one({'_id': ObjectId(request.form['field-id'])}, {
+        '$set': {
+            'email': request.form['field-email'],
+            'password': request.form['field-password'],
+            'namefirst': request.form['field-fname'],
+            'namelast': request.form['field-lname'],
+            'age': request.form['field-age']
+        }
+    }, upsert=False)
+
+    return index()
+
 @app.route('/removeuser', methods=['POST'])
 def removeuser():
     mongo.db.users.delete_one({'_id': ObjectId(request.form['radio-delete'])})

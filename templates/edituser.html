@@ -1,0 +1,15 @@
+{% extends "base.html" -%}
+{% block content -%}
+    <h1>Edit User</h1>
+    <form method="post" action="/useredited">
+        <ul style="list-style-type: none;">
+            <li><input type="text" id="field-email" name="field-email" placeholder="email" value="{{user.email}}" /></li>
+            <li><input type="text" id="field-fname" name="field-fname" placeholder="first name" value="{{user.namefirst}}" /></li>
+            <li><input type="text" id="field-lname" name="field-lname" placeholder="last name" value="{{user.namelast}}" /></li>
+            <li><input type="text" id="field-age" name="field-age" placeholder="age" value="{{user.age}}" /></li>
+            <li><input type="text" id="field-password" name="field-password" placeholder="password" value="{{user.password}}" /></li>
+            <li><input type="hidden" id="field-id" name="field-id" value="{{ user._id }}" />
+            <li><input type="submit" /></li>
+        </ul>
+    </form>
+{% endblock content %}

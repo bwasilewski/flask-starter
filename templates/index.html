@@ -20,6 +20,7 @@
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -28,6 +29,7 @@
                         <tr>
                             <td>{{ user.namefirst }} {{ user.namelast }}</td>
                             <td>{{ user.email }}</td>
+                            <td><a href="/edituser/{{ user._id }}">Edit</a></td>
                             <td><input type="radio" name="radio-delete" value="{{ user._id }}" /></td>
                         </tr>
                     {% endfor %}
