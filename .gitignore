@@ -1,3 +1,8 @@
 *.swp
 *.pyc
-data
+data/
+bin/
+.Python
+lib/
+include/
+pip-selfcheck.json

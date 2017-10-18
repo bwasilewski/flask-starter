@@ -1,42 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>{{ title }}</title>
-    </head>
-    <body>
-        <div class="container">
-            <h1>Hello World!</h1>
-            <p>You have successfully logged in.</p>
+{% extends "base.html" -%}
+{% block content -%}
+<header>
+    {% include 'partials/navigation.html' %}
+    <h1>Hello World!</h1>
+    <p>You have successfully logged in.</p>
+</header>
+<form method="post" action="/logout">
+    <input type="submit" value="Log Out" />
+</form>
 
-            <form method="post" action="/logout">
-                <input type="submit" value="Log Out" />
-            </form>
-
-            <h2>Users</h2>
-            <a href="/createuser">Create New User</a>
-            <form method="post" action="/removeuser">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for user in users %}
-                        <tr>
-                            <td>{{ user.namefirst }} {{ user.namelast }}</td>
-                            <td>{{ user.email }}</td>
-                            <td><a href="/edituser/{{ user._id }}">Edit</a></td>
-                            <td><input type="radio" name="radio-delete" value="{{ user._id }}" /></td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-                <input type="submit" value="Delete User" />
-            </form>
-        </div>
-    </body>
-</html>
+<h2>Users</h2>
+<a href="/createuser">Create New User</a>
+<form method="post" action="/removeuser">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.namefirst }} {{ user.namelast }}</td>
+                <td>{{ user.email }}</td>
+                <td><a href="/edituser/{{ user._id }}">Edit</a></td>
+                <td><input type="radio" name="radio-delete" value="{{ user._id }}" /></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <input type="submit" value="Delete User" />
+</form>
+{% endblock content %}

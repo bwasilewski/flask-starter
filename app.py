@@ -5,6 +5,7 @@ import os
 app = Flask(__name__)
 mongo = PyMongo(app)
 
+
 @app.route('/')
 def index():
     users = mongo.db.users.find()
@@ -12,6 +13,12 @@ def index():
         return render_template('login.html', title="Please log in")
     else:
         return render_template('index.html', title="Welcome", users=users)
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -21,18 +28,22 @@ def login():
         flash('wrong password!')
     return index()
 
+
 @app.route('/logout', methods=['POST'])
 def logout():
     session['logged_in'] = False
     return index()
 
+
 @app.route('/register')
 def register():
     return render_template('register.html', title="Please fill out the form")
 
+
 @app.route('/createuser')
 def createuser():
     return register()
+
 
 @app.route('/newuser', methods=['POST'])
 def newuser():
@@ -47,10 +58,12 @@ def newuser():
 
     return index()
 
+
 @app.route('/edituser/<userid>')
 def edituser(userid=None):
     user = mongo.db.users.find_one({'_id': ObjectId(userid)})
     return render_template('edituser.html', title="Please modify the user", user=user)
+
 
 @app.route('/useredited', methods=['POST'])
 def useredited():
@@ -66,10 +79,12 @@ def useredited():
 
     return index()
 
+
 @app.route('/removeuser', methods=['POST'])
 def removeuser():
     mongo.db.users.delete_one({'_id': ObjectId(request.form['radio-delete'])})
     return index()
+
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)
